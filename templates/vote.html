@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Голосование</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+      }
+      .vote-container {
+        max-width: 500px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+      .vote-container h2,
+      .vote-container h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #222;
+      }
+      .vote-container form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+      .vote-container label {
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .vote-container input[type="radio"] {
+        accent-color: #007bff;
+        width: 1.2em;
+        height: 1.2em;
+      }
+      .vote-container button {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 12px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .vote-container button:hover {
+        background: #0056b3;
+      }
+      .vote-container ul {
+        list-style: none;
+        padding: 0;
+      }
+      .vote-container li {
+        background: #f0f0f0;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        border-radius: 4px;
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="vote-container">
+      <h2>Ваш любимый жанр?</h2>
+      <form method="POST">
+        {% for opt, cnt in results %}
+        <label>
+          <input type="radio" name="option" value="{{ opt }}" required /> {{ opt
+          }}
+        </label>
+        {% endfor %}
+        <button type="submit">Голосовать</button>
+      </form>
+
+      <h3>Результаты голосования:</h3>
+      <ul>
+        {% for opt, cnt in results %}
+        <li>{{ opt }}: {{ cnt }} голосов</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
